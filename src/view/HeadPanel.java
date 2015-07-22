@@ -9,7 +9,14 @@ import javax.swing.*;
  * @author congye6
  */
 public class HeadPanel extends JPanel{
-
+	static final int HEIGHT_OF_HEAD=50;
+	
+	public HeadPanel() {
+		this.setLocation(0, 0);
+		this.setSize(WIDTH, HEIGHT_OF_HEAD);
+	}
+	
+	
 	@Override
 	public void paintComponent(Graphics g){
 		Image head=Images.HEAD;

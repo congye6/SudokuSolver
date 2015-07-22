@@ -11,8 +11,8 @@ public class MainFrame implements Observer{
 	private static final int HEIGHT=500;
 	private static final int WIDTH=360;
 	
-	static final int HEIGHT_OF_HEAD=50;
-	static final int HEIGHT_OF_CHESSBOARD=360;
+	
+	
 	
 	
 	private JFrame frame;
@@ -27,12 +27,14 @@ public class MainFrame implements Observer{
 		frame.setResizable(false);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setLocationRelativeTo(frame);
+		frame.setLayout(null);
 		
 		head=new HeadPanel();
-		
+		operationBoard=new OperationPanel();
 		
 		
 		frame.add(head);
+		frame.add(operationBoard);
 		
 		frame.setVisible(true);
 	}
