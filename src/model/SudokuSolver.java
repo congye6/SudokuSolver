@@ -8,13 +8,15 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Observable;
 import java.util.Scanner;
+
 
 /**
  * @Class	SudokuSolver
  * @author congye6
  */
-public class SudokuSolver {
+public class SudokuSolver extends Observable{
 	private BlockPO[][] blockMatrix=new BlockPO[9][9];
 	private int solvedNumber=0;
 	private boolean hasNew=false;
@@ -32,6 +34,18 @@ public class SudokuSolver {
 			}
 		}
 	}
+	
+	/**
+	 * é€šçŸ¥æ›´æ–°æ–¹æ³•ï¼Œè¯·åœ¨å­ç±»ä¸­éœ€è¦é€šçŸ¥è§‚å¯Ÿè€…çš„åœ°æ–¹è°ƒç”¨æ­¤æ–¹æ³•
+	 * @param data
+	 */
+	protected void updateChange(UpdateMessage message){
+		
+		super.setChanged();
+		super.notifyObservers(message);
+		
+	}
+	
 	
 	public static void main(String[] args) {
 		long startTime=Calendar.getInstance().getTimeInMillis();
@@ -83,7 +97,7 @@ public class SudokuSolver {
 	}
 	
 	/**
-	 * »Ö¸´ÉÏÒ»´Î recover
+	 * ï¿½Ö¸ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ recover
 	 * @Method
 	 */
 	public void recover(){
@@ -109,7 +123,7 @@ public class SudokuSolver {
 	//@end
 	
 	/**
-	 * ²ÂÒ»¸öÊı×Ö
+	 * ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @Method guessNumber
 	 */
 	private void guessNumber(){
@@ -117,7 +131,7 @@ public class SudokuSolver {
 		int y=0;
 		int num=0;
 		
-		//ÕÒÒ»¸ö¿Õ¸ñ
+		//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Õ¸ï¿½
 		a:for(int i=0;i<9;i++){
 			for(int j=0;j<9;j++){
 				if(!blockMatrix[i][j].isSolved()){
@@ -138,7 +152,7 @@ public class SudokuSolver {
 	//@end
 	
 	/**
-	 * ½øĞĞÒ»´ÎËÑË÷£¬Èô³öÏÖÎŞ½â·µ»Øfalse
+	 * ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ş½â·µï¿½ï¿½false
 	 * @Method search
 	 * @return
 	 */
@@ -151,7 +165,7 @@ public class SudokuSolver {
 				if(po.isSolved())
 					continue;
 				
-				//½öÓĞÒ»ÖÖ¿ÉÄÜ
+				//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö¿ï¿½ï¿½ï¿½
 				if(po.getSolvedNumber()!=0){
 					guessWrong=solveNumber(i, j);
 					
@@ -171,15 +185,15 @@ public class SudokuSolver {
 	}
 	//@end
 	/**
-	 * Í¬ĞĞÍ¬ÁĞÍ¬¾Å¹¬¸ñµÄ¸ñ×ÓÅÅ³ı³ÉÎª¸ÃÊı×ÖµÄ¿ÉÄÜ
+	 * Í¬ï¿½ï¿½Í¬ï¿½ï¿½Í¬ï¿½Å¹ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ÖµÄ¿ï¿½ï¿½ï¿½
 	 * @Method solve
-	 * @return ÈôÎŞ½â£¬·µ»Øtrue
+	 * @return ï¿½ï¿½ï¿½Ş½â£¬ï¿½ï¿½ï¿½ï¿½true
 	 */
 	private boolean solveNumber (int x,int y){
 		int num=blockMatrix[x][y].getSolvedNumber();
 		boolean guessWrong=false;
 		
-		//ÅÅ³ıÍ¬Ò»ÁĞµÄ
+		//ï¿½Å³ï¿½Í¬Ò»ï¿½Ğµï¿½
 		for(int i=0;i<9;i++){
 			if(i==x)
 				continue;
@@ -187,7 +201,7 @@ public class SudokuSolver {
 			if(guessWrong)
 				return guessWrong;
 		}
-		//ÅÅ³ıÍ¬Ò»ĞĞµÄ
+		//ï¿½Å³ï¿½Í¬Ò»ï¿½Ğµï¿½
 		for(int i=0;i<9;i++){
 			if(i==y)
 				continue;
@@ -196,7 +210,7 @@ public class SudokuSolver {
 				return guessWrong;
 		}
 
-//		//ÅÅ³ıÍ¬Ò»¾Å¹¬¸ñÖĞµÄ
+//		//ï¿½Å³ï¿½Í¬Ò»ï¿½Å¹ï¿½ï¿½ï¿½ï¿½Ğµï¿½
 //		int squareX=x/3;
 //		int squareY=y/3;
 //		for(int i=3*squareX;i<3*squareX+3;i++){
@@ -214,7 +228,7 @@ public class SudokuSolver {
 	
 	
 	/**
-	 * ´ÓÎÄ¼şÖĞ¶ÁÈë³õÊ¼Êı×Ö
+	 * ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 	 * @Method scan
 	 */
 	private void scan(){
@@ -226,9 +240,9 @@ public class SudokuSolver {
 				
 				if(temp==-1)
 					break;
-				int number=temp/100;//°ÙÎ»Îª³õÊ¼Êı×Ö
-				int x=(temp-number*100)/10;//Ê®Î»Îªy×ø±ê
-				int y=temp%10;//¸öÎ»Îªx×ø±ê
+				int number=temp/100;//ï¿½ï¿½Î»Îªï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
+				int x=(temp-number*100)/10;//Ê®Î»Îªyï¿½ï¿½ï¿½ï¿½
+				int y=temp%10;//ï¿½ï¿½Î»Îªxï¿½ï¿½ï¿½ï¿½
 				blockMatrix[x][y].solved(number);
 				
 			}
