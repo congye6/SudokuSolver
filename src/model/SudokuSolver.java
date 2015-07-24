@@ -16,8 +16,8 @@ import java.util.Scanner;
  * @Class	SudokuSolver
  * @author congye6
  */
-public class SudokuSolver extends Observable{
-	private BlockPO[][] blockMatrix=new BlockPO[9][9];
+public class SudokuSolver {
+	private BlockPO[][] blockMatrix;
 	private int solvedNumber=0;
 	private boolean hasNew=false;
 	
@@ -27,32 +27,18 @@ public class SudokuSolver extends Observable{
 	
 	List<Message> messageList=new ArrayList<>();
 	
-	public SudokuSolver(){
-		for(int i=0;i<9;i++){
-			for(int j=0;j<9;j++){
-				blockMatrix[i][j]=new BlockPO();
-			}
-		}
+	public SudokuSolver(BlockPO[][] blockMatrix){
+		this.blockMatrix=blockMatrix;
 	}
 	
-	/**
-	 * 通知更新方法，请在子类中需要通知观察者的地方调用此方法
-	 * @param data
-	 */
-	protected void updateChange(UpdateMessage message){
-		
-		super.setChanged();
-		super.notifyObservers(message);
-		
-	}
+	
 	
 	
 	public static void main(String[] args) {
 		long startTime=Calendar.getInstance().getTimeInMillis();
-		SudokuSolver sudokuSolver=new SudokuSolver();
-		sudokuSolver.scan();
-		sudokuSolver.sudokuSolve();
-		sudokuSolver.print();
+		
+		
+		
 		long endTime= Calendar.getInstance().getTimeInMillis();
 		System.out.println(endTime-startTime);
 	}
@@ -97,7 +83,7 @@ public class SudokuSolver extends Observable{
 	}
 	
 	/**
-	 * �ָ���һ�� recover
+	 * 出现无解时恢复
 	 * @Method
 	 */
 	public void recover(){
@@ -123,7 +109,6 @@ public class SudokuSolver extends Observable{
 	//@end
 	
 	/**
-	 * ��һ������
 	 * @Method guessNumber
 	 */
 	private void guessNumber(){
@@ -131,7 +116,7 @@ public class SudokuSolver extends Observable{
 		int y=0;
 		int num=0;
 		
-		//��һ���ո�
+		//猜数字
 		a:for(int i=0;i<9;i++){
 			for(int j=0;j<9;j++){
 				if(!blockMatrix[i][j].isSolved()){
@@ -152,7 +137,7 @@ public class SudokuSolver extends Observable{
 	//@end
 	
 	/**
-	 * ����һ���������������޽ⷵ��false
+	 * 出现无解时返回true
 	 * @Method search
 	 * @return
 	 */
@@ -165,7 +150,6 @@ public class SudokuSolver extends Observable{
 				if(po.isSolved())
 					continue;
 				
-				//����һ�ֿ���
 				if(po.getSolvedNumber()!=0){
 					guessWrong=solveNumber(i, j);
 					
@@ -185,7 +169,6 @@ public class SudokuSolver extends Observable{
 	}
 	//@end
 	/**
-	 * ͬ��ͬ��ͬ�Ź���ĸ����ų���Ϊ�����ֵĿ���
 	 * @Method solve
 	 * @return ���޽⣬����true
 	 */
@@ -210,47 +193,10 @@ public class SudokuSolver extends Observable{
 				return guessWrong;
 		}
 
-//		//�ų�ͬһ�Ź����е�
-//		int squareX=x/3;
-//		int squareY=y/3;
-//		for(int i=3*squareX;i<3*squareX+3;i++){
-//			for(int j=3*squareY;j<3*squareY+3;j++){
-//				if(i==x&&j==y)
-//					continue;
-//				guessWrong=blockMatrix[i][j].remove(num);
-//				if(guessWrong)
-//					return guessWrong;
-//			}
-//		}
 		return guessWrong;
 	}
 	//@end
 	
-	
-	/**
-	 * ���ļ��ж����ʼ����
-	 * @Method scan
-	 */
-	private void scan(){
-		Scanner scanner;
-		try {
-			scanner = new Scanner(file);
-			while(true){
-				int temp=scanner.nextInt();
-				
-				if(temp==-1)
-					break;
-				int number=temp/100;//��λΪ��ʼ����
-				int x=(temp-number*100)/10;//ʮλΪy����
-				int y=temp%10;//��λΪx����
-				blockMatrix[x][y].solved(number);
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	//@end
 	
 	
 	private Object deepCopy(Object a){
@@ -269,6 +215,8 @@ public class SudokuSolver extends Observable{
 		}
 		return b;
 	}
+	
+	
 	
 	
 	private void print(){

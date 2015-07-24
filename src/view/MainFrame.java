@@ -13,8 +13,6 @@ public class MainFrame implements Observer{
 	
 	
 	
-	
-	
 	private JFrame frame;
 	
 	private ChessBoardPanel chessBoard;
