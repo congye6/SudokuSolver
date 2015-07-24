@@ -9,7 +9,7 @@ public class Images {
 	
 	static {
 		for(int i=1;i<=9;i++){
-		OPERATION[i]=createImage("operation"+i);
+		OPERATION[i]=createImage("operatiion"+i);
 		}
 	}
 	

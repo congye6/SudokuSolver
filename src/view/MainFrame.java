@@ -16,9 +16,9 @@ public class MainFrame implements Observer{
 	
 	
 	private JFrame frame;
-	
+	private HeadPanel head;
 	private ChessBoardPanel chessBoard;
-	
+	private OperationPanel operationBoard;
 	
 	
 	public  MainFrame() {
@@ -27,14 +27,14 @@ public class MainFrame implements Observer{
 		frame.setResizable(false);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setLocationRelativeTo(frame);
+		frame.setLayout(null);
+		
+		head=new HeadPanel();
+		operationBoard=new OperationPanel();
 		
 		
-		
-		chessBoard=new ChessBoardPanel();
-		
-		
-		frame.add(chessBoard);
-
+		frame.add(head);
+		frame.add(operationBoard);
 		
 		frame.setVisible(true);
 	}
