@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * @Class BlockPO
  * @author congye6
- * 记录棋盘格子的信息
+ * 璁板綍妫嬬墝鏍煎瓙淇℃伅
  */
 public class BlockPO implements Serializable{
 	private int possibleNnumbers=511;
@@ -35,7 +35,6 @@ public class BlockPO implements Serializable{
 	
 	/**
 	 * @Method remove
-	 * 移除可能数字
 	 */
 	public boolean remove(int i){
 		possibleNnumbers=possibleNnumbers&removeBins[i];
@@ -58,7 +57,6 @@ public class BlockPO implements Serializable{
 	//@end
 	/**
 	 * @Method solved
-	 * 从棋盘中设置初始数字，或者猜一个数字
 	 */
 	public void solved(int i){
 		possibleNnumbers=solveBins[i];
@@ -67,14 +65,12 @@ public class BlockPO implements Serializable{
 	//@end
 	/**
 	 * @Method isSolved
-	 * @return 当前是否解决
 	 */
 	public boolean isSolved(){
 		return isSolved;
 	}
 	//@end
 	/**
-	 * 设置已经解出
 	 * @Method setSolved
 	 */
 	public void setSolved(){
@@ -83,7 +79,6 @@ public class BlockPO implements Serializable{
 	//@end
 	
 	/**
-	 * 已解出的数字
 	 * @Method getSolvedNumber
 	 */
 	public int getSolvedNumber() {
