@@ -25,7 +25,7 @@ public class ChessBoardPanel extends JPanel{
 		
 		
 		//操作面板
-		Image oper9=Images.OPERATION[9];
+		Image oper9=Images.CHESS[5];
 		g.drawImage(oper9, 0, HEIGHT_OF_HEAD+HEIGHT_OF_BODY, null);
 	}
 }
