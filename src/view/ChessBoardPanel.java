@@ -14,6 +14,9 @@ public class ChessBoardPanel extends JPanel{
 	
 	@Override
 	public void paintComponent(Graphics g){
+		
+		super.paintComponent(g);
+		
 		//背景
 		Image head=Images.HEAD;
 		Image background=Images.BACKGROUND;
