@@ -10,11 +10,11 @@ public class GameController {
 	}
 
 	public void chessClicked(int x,int y){
-		
+		model.setPlace(x,y);
 	}
 	
 	public void operationClicked(int num){
-		
+		model.setNumber(num);
 	}
 	
 	public void start(){

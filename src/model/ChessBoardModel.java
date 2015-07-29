@@ -6,6 +6,9 @@ public class ChessBoardModel extends Observable{
 	private BlockPO[][] blockMatrix=new BlockPO[9][9];
 	SudokuSolver solver;
 	
+	int x=10;
+	int y=10;
+	
 	
 	public ChessBoardModel() {
 		for(int i=0;i<9;i++){
@@ -29,6 +32,28 @@ public class ChessBoardModel extends Observable{
 		
 		super.setChanged();
 		super.notifyObservers(message);
+		
+	}
+
+
+
+
+
+
+	public void setPlace(int x, int y) {
+		this.x=x;
+		this.y=y;
+		
+	}
+
+
+
+
+
+
+	public void setNumber(int num) {
+		if(x==10&&y==10)
+			return;
 		
 	}
 	
