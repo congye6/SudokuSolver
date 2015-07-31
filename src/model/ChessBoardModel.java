@@ -50,7 +50,6 @@ public class ChessBoardModel extends Observable{
 
 	public void solve() {
 		solver.sudokuSolve();
-		
 	}
 	
 	

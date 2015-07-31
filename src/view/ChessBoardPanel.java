@@ -15,6 +15,7 @@ public class ChessBoardPanel extends JPanel implements Observer{
 	
 	private ChessButton[][] chess;
 	
+	private OperationButton[] operationButtons;
     
 	public ChessBoardPanel() {
 		this.setLayout(null);
@@ -25,9 +26,20 @@ public class ChessBoardPanel extends JPanel implements Observer{
 				chess[i][j]=new ChessButton(i, j);
 				chess[i][j].setBounds(i*SIZE,HEIGHT_OF_HEAD+j*SIZE, SIZE, SIZE);
 				chess[i][j].setIcon(Images.CHESS[0]);
+				chess[i][j].addActionListener(new ChessButtonListener());
 				this.add(chess[i][j]);
 			}
 		}
+		
+		operationButtons=new OperationButton[9];
+		for(int i=0;i<9;i++){
+			operationButtons[i]=new OperationButton(i+1);
+			operationButtons[i].setBounds(i*SIZE, HEIGHT_OF_BODY+HEIGHT_OF_HEAD+20, SIZE, SIZE);
+			operationButtons[i].setIcon(Images.OPERATION[i+1]);
+			operationButtons[i].addActionListener(new OperationButtonListener());
+			this.add(operationButtons[i]);
+		}
+		
 	}
 	
 	@Override
@@ -49,6 +61,9 @@ public class ChessBoardPanel extends JPanel implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		List<BlockVO> blockDisplayList=(ArrayList<BlockVO>)arg1;
-		
+		for(BlockVO displayBlock:blockDisplayList){
+			ImageIcon image=Images.CHESS[displayBlock.getSolvedNumber()];
+			chess[displayBlock.getX()][displayBlock.getY()].setIcon(image);
+		}
 	}
 }

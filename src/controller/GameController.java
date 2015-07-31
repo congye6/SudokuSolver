@@ -3,11 +3,7 @@ package controller;
 import model.ChessBoardModel;
 
 public class GameController {
-	ChessBoardModel model;
-	
-	public GameController(ChessBoardModel model) {
-		this.model = model;
-	}
+	static ChessBoardModel model;
 
 	public void chessClicked(int x,int y){
 		model.setPlace(x,y);
@@ -19,6 +15,10 @@ public class GameController {
 	
 	public void start(){
 		model.solve();
+	}
+	
+	static public void setModel(ChessBoardModel models){
+		model=models;
 	}
 
 }
