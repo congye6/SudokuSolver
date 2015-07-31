@@ -3,6 +3,11 @@ package model;
 import java.io.Serializable;
 import java.util.*;
 
+import com.sun.xml.internal.ws.client.dispatch.DispatchImpl;
+
+import view.BlockVO;
+import view.DisplayBlockState;
+
 /**
  * @Class BlockPO
  * @author congye6
@@ -11,14 +16,22 @@ import java.util.*;
 public class BlockPO implements Serializable{
 	private int possibleNnumbers=511;
 	
+	private int x;
+	private int y;
+	
 	private static int[] removeBins=new int[10];
 	private static int[] solveBins=new int[10];
 	private static Map<Integer,Integer> solveMap=new HashMap<Integer, Integer>();
-	
+	private static DisplayBlockState[] dbs=new DisplayBlockState[]{
+		DisplayBlockState.BLANK,DisplayBlockState.ONE,DisplayBlockState.TWO,DisplayBlockState.THREE
+		,DisplayBlockState.FOUR,DisplayBlockState.FIVE,DisplayBlockState.SIX,DisplayBlockState.SEVEN
+		,DisplayBlockState.EIGHT,DisplayBlockState.NINI
+	};
 	
 	private boolean isSolved=false;
 	
 	private int solvedNumber;
+	
 	
 	
 	static{
@@ -31,6 +44,18 @@ public class BlockPO implements Serializable{
 		}
 		
 	}
+	
+	public BlockPO(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	
+	public BlockVO getDisplayBlock(){
+		return new BlockVO(dbs[solvedNumber], x, y);
+	}
+	
+	
 	
 	
 	/**

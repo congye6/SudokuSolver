@@ -1,11 +1,7 @@
 package view;
-
-import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.*;
 
-public class MainFrame implements Observer{
+public class MainFrame {
 	
 	
 	private static final int HEIGHT=500;
@@ -42,11 +38,5 @@ public class MainFrame implements Observer{
 		MainFrame mainFrame=new MainFrame();
 	}
 	
-	
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 }

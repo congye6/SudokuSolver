@@ -32,17 +32,6 @@ public class SudokuSolver {
 	}
 	
 	
-	
-	
-	public static void main(String[] args) {
-		long startTime=Calendar.getInstance().getTimeInMillis();
-		
-		
-		
-		long endTime= Calendar.getInstance().getTimeInMillis();
-		System.out.println(endTime-startTime);
-	}
-	
 	/**
 	 * @Method sudokuSolver
 	 */
@@ -217,17 +206,5 @@ public class SudokuSolver {
 	}
 	
 	
-	
-	
-	private void print(){
-		System.out.println("n="+solvedNumber);
-		for(int i=0;i<9;i++){
-			for(int j=0;j<9;j++){
-				System.out.printf("%d\t",blockMatrix[i][j].getSolvedNumber());
-			}
-			System.out.println();
-		}
-		System.out.println();
-	}
 	
 }

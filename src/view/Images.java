@@ -6,16 +6,26 @@ public class Images {
 	static final Image HEAD=createImage("head");
 	static final Image BACKGROUND=createImage("background");
 	
-	static final Image[] OPERATION=new Image[10];
-	static final Image[] CHESS=new Image[10];
+	static final ImageIcon[] OPERATION=new ImageIcon[10];
+	static final ImageIcon[] CHESS=new ImageIcon[10];
 	
 	
 	static {
 		for(int i=1;i<=9;i++){
-		OPERATION[i]=createImage("operation"+i);
-		CHESS[i]=createImage("chess"+i);
+		OPERATION[i]=createImageIcon("operation"+i);
+		CHESS[i]=createImageIcon("chess"+i);
 		}
-		CHESS[0]=createImage("blank");
+		CHESS[0]=createImageIcon("blank");
+	}
+	
+	/**
+	 * 创建image
+	 * @author congye6
+	 * @param name 图片名字
+	 */
+	private static ImageIcon createImageIcon(String name){
+		ImageIcon image=new ImageIcon("image/"+name+".jpg");
+		return image;
 	}
 	
 	/**
