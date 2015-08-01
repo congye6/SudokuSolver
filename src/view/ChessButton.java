@@ -10,6 +10,8 @@ public class ChessButton extends JButton{
 	public ChessButton(int x, int y) {
 		this.x = x;
 		this.y = y;
+		this.setContentAreaFilled(false);
+		
 	}
 	
 

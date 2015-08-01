@@ -11,6 +11,12 @@ public class MainFrame {
 	
 	private JFrame frame;
 	
+	public ChessBoardPanel getChessBoard() {
+		return chessBoard;
+	}
+
+
+
 	private ChessBoardPanel chessBoard;
 	
 	
@@ -34,9 +40,6 @@ public class MainFrame {
 	}
 	
 	
-	public static void main(String[] args) {
-		MainFrame mainFrame=new MainFrame();
-	}
 	
 	
 }

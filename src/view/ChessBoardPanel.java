@@ -2,11 +2,15 @@ package view;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.*;
+
+import controller.GameController;
 
 public class ChessBoardPanel extends JPanel implements Observer{
 	static final int HEIGHT_OF_HEAD=50;
@@ -14,8 +18,8 @@ public class ChessBoardPanel extends JPanel implements Observer{
 	static final int SIZE=40;
 	
 	private ChessButton[][] chess;
-	
 	private OperationButton[] operationButtons;
+	private JButton OkButton;
     
 	public ChessBoardPanel() {
 		this.setLayout(null);
@@ -40,6 +44,11 @@ public class ChessBoardPanel extends JPanel implements Observer{
 			this.add(operationButtons[i]);
 		}
 		
+		OkButton=new JButton("OK");
+		OkButton.addActionListener(new OkListener());
+		OkButton.setBounds(0, HEIGHT_OF_BODY+HEIGHT_OF_HEAD+10, 10, 10);
+		this.add(OkButton);
+		
 	}
 	
 	@Override
@@ -54,16 +63,26 @@ public class ChessBoardPanel extends JPanel implements Observer{
 		g.drawImage(head,0,0, null);
 		
 		
-		//操作面板
-		
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		List<BlockVO> blockDisplayList=(ArrayList<BlockVO>)arg1;
+		System.out.println("updating"+blockDisplayList.size());
 		for(BlockVO displayBlock:blockDisplayList){
 			ImageIcon image=Images.CHESS[displayBlock.getSolvedNumber()];
 			chess[displayBlock.getX()][displayBlock.getY()].setIcon(image);
 		}
+		repaint();
 	}
+	
+	class OkListener implements ActionListener{
+			@Override
+		public void actionPerformed(ActionEvent e) {
+			new GameController().start();
+			
+		}
+	}
+
+	
 }

@@ -12,5 +12,6 @@ public class OperationButtonListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		OperationButton op=(OperationButton)e.getSource();
 		game.operationClicked(op.getNum());
+		System.out.println("operating");
 	}
 }
