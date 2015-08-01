@@ -21,11 +21,7 @@ public class SudokuSolver {
 	private int solvedNumber=0;
 	private boolean hasNew=false;
 	
-	private File file=new File("file.txt");
-	
-	
-	
-	List<Message> messageList=new ArrayList<>();
+	private List<Message> messageList=new ArrayList<>();
 	
 	public SudokuSolver(BlockPO[][] blockMatrix){
 		this.blockMatrix=blockMatrix;
@@ -35,7 +31,7 @@ public class SudokuSolver {
 	/**
 	 * @Method sudokuSolver
 	 */
-	public void sudokuSolve(){
+	public BlockPO[][] sudokuSolve(){
 		boolean guessWrong;
 		
 		
@@ -57,17 +53,15 @@ public class SudokuSolver {
 			if(solvedNumber>=81)
 				break;
 			
-				
 			
 			if(!hasNew)
 				guessNumber();
-				
-			
 		}
 		
+		print();
 		
 			
-		return;	
+		return blockMatrix;	
 		
 	}
 	
@@ -206,5 +200,17 @@ public class SudokuSolver {
 	}
 	
 	
+	
+	
+	private void print(){
+		System.out.println("n="+solvedNumber);
+		for(int i=0;i<9;i++){
+			for(int j=0;j<9;j++){
+				System.out.printf("%d\t",blockMatrix[i][j].getSolvedNumber());
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
 	
 }

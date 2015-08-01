@@ -54,10 +54,11 @@ public class ChessBoardModel extends Observable{
 
 
 	public void solve() {
-		solver.sudokuSolve();
+		blockMatrix=solver.sudokuSolve();
 		List<BlockVO> blockDisplayList=new ArrayList<>();
 		for(int i=0;i<9;i++){
 			for(int j=0;j<9;j++){
+				System.out.println(blockMatrix[i][j].getSolvedNumber());
 				blockDisplayList.add(blockMatrix[i][j].getDisplayBlock());
 			}
 		}
